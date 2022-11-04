@@ -1,0 +1,108 @@
+[Cランクメモ]
+・split(' ')：文字 文字 を ['文字' '文字']に変更する
+・splice()：配列から指定分の配列を抜きだす
+・filter((x, i, self) => { return self.indexOf(x) !== self.lastIndexOf(x) })
+：配列の重複した値のみ取得
+・filter((x, i, self) => { return self.indexOf(x) !== self.lastIndexOf(x) })
+：配列の重複以外を取得
+・[...new Set(上記)]：上記で取得したものはオブジェクトなので配列に直す
+・○○.match(■■)：○○の変数にマッチした■■の文字列を配列で返すマッチしなかったらnullを返す
+・配列.length：配列の数を返す
+
+// ユーザー数
+  const users = lines[0];
+  
+  // ユーザーのID
+  const userIds = lines.splice(-users, users);
+  
+  // ユーザーIDからID番号のみを取得
+  const regex = /[^0-9]/g;
+  const idsNumber = [];
+  for (let i = 0; i < users; i++) {
+      let result = userIds[i].replace(regex, "");
+      idsNumber.push(parseInt(result));
+  }
+  
+  // id番号とユーザーidのMapオブジェクトを作成
+  let userMap = new Map([]);
+  userIds.map((res, index) => {
+      userMap.set(idsNumber[index], res);
+  })
+  
+  // Mapオブジェクトを昇順でソート
+  userMap = new Map([...userMap.entries()].sort((a, b) => a[0] > b[0] ? 1 : -1));
+  for (const [key, value] of userMap) {
+    console.log(value);
+  }
+
+
+
+[リンク]
+配列の要素を取り出す
+https://gray-code.com/javascript/pickout-item-for-array/
+
+配列と配列を結合する
+https://www.javadrive.jp/javascript/array/index11.html
+
+javascript 配列から重複してないデータだけを抽出する
+https://mebee.info/2020/09/04/post-17851/
+
+配列の重複をはじく、もしくは重複を取り出す
+https://qiita.com/cocottejs/items/7afe6d5f27ee7c36c61f
+
+配列の要素の一部を置き換える
+https://gray-code.com/javascript/replace-item-for-array/
+
+JavaScript: 特定の文字の数をカウントする方法
+https://step-learn.com/article/javascript/127-string-count.html
+
+JavaScriptで文字列を1文字ずつ分割して配列に入れる方法を現役エンジニアが解説【初心者向け】
+https://magazine.techacademy.jp/magazine/32457
+
+JavaScript 文字列から指定した文字を削除する
+https://zukucode.com/2017/04/javascript-string-remove.html
+
+JavaScriptのfilterを使って配列の中から条件にマッチするデータを取得する方法
+https://pg-log.com/javascript-filte/
+
+文字列から指定位置の一文字を取得
+https://shanabrian.com/web/javascript/string-charat.php
+
+文字の登場回数を取得する方法
+https://lab.syncer.jp/Web/JavaScript/Snippet/23/
+
+【javascript】オブジェクトにプロパティを追加する
+https://qiita.com/chihiro/items/eb8c7b2ceee5274a4a8f
+
+SetオブジェクトとMapオブジェクトを使いこなそう(JavaScript 基礎構文)
+https://press.monaca.io/atsushi/9225
+
+JavaScriptのMapをキーでソートする
+https://www.paveway.info/entry/2021/06/30/javascript_map_sort
+
+配列から最大値と最小値を取得する
+https://gray-code.com/javascript/get-max-value-and-minimum-value-in-array/
+
+JavaScript で文字列を反転させる方法 3 種
+https://www.freecodecamp.org/japanese/news/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb/
+
+JavaScriptで特定の文字列が含まれているか調べるメソッドの使い方
+https://qiita.com/shimajiri/items/a2d79d9aa1323da972f3
+
+[JAVASCRIPT]配列の特定の要素を調べる方法を一部まとめ
+https://forsmile.jp/javascript/1001/#:~:text=%E9%85%8D%E5%88%97%E3%81%AB%E7%89%B9%E5%AE%9A%E3%81%AE%E8%A6%81%E7%B4%A0,%E3%81%AF%20false%20%E3%81%A7%E8%BF%94%E3%81%97%E3%81%BE%E3%81%99%E3%80%82
+
+JavaScript で bit全探索
+https://tech-blog.s-yoshiki.com/entry/132
+
+JavaScriptで配列内の値を昇順・降順に並び替える方法
+https://zenn.dev/tk4/articles/0dcfdd76b862202b217c
+
+【JavaScript】配列：文字列と数値が混合している要素の並び替え
+https://zenn.dev/ymkn8crz/articles/ff39b43c4defc3
+
+JavaScript で文字列に文字を追加する
+https://www.delftstack.com/ja/howto/javascript/javascript-add-to-string/
+
+【JS】includes()で特定要素を複数指定したいとき
+https://qiita.com/mtoutside/items/e34e06c674a8e6623ba4
